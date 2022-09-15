@@ -2,7 +2,7 @@ import {Hook} from '@oclif/core'
 import * as fs from 'fs-extra'
 import * as path from 'path'
 
-const injectConfig: Hook<'prerun'> = async function (opts) {
+const csliUtils: Hook<any> = async function (opts) {
   let cliConfig: any = null
   try {
     // It's looking for something like: /Users/mike/.config/csli/cli.json
@@ -19,21 +19,7 @@ const injectConfig: Hook<'prerun'> = async function (opts) {
     }
   }
 
-  // If there's no config file, use the argument defaults in commands
-  if (!cliConfig) return
-
-  // Otherwise, see if we have config that overrides the default
-  if (cliConfig[opts.Command.id]) {
-    if (cliConfig[opts.Command.id]['verbosity']) {
-      opts.Command.args?.map(arg => {
-        if (arg.name === 'verbosity') {
-          arg.default = cliConfig[opts.Command.id]['verbosity']
-        }
-      })
-    }
-  }
-  // opts.Command.run()
   return cliConfig
 }
 
-export default injectConfig
+export default csliUtils
