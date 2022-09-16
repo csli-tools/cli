@@ -1,6 +1,33 @@
 oclif-hello-world
 =================
 
+Hi. It's best to use:
+
+    npm ci
+
+Because TypeScript is acting funny and you might see stuff like:
+
+```
+csli-cli [master]⚛️  npm run build
+
+> @csli/cli@0.0.0 build
+> shx rm -rf dist && tsc -b
+
+node_modules/@oclif/core/lib/command.d.ts:100:35 - error TS2344: Type 'F' does not satisfy the constraint 'FlagOutput'.
+
+100     }>(options?: Interfaces.Input<F, G>, argv?: string[]): Promise<Interfaces.ParserOutput<F, G, A>>;
+                                      ~
+
+  node_modules/@oclif/core/lib/command.d.ts:98:21
+    98     protected parse<F, G, A extends {
+                           ~
+    This type parameter might need an `extends Interfaces.FlagOutput` constraint.
+
+node_modules/@oclif/core/lib/command.d.ts:100:92 - error TS2344: Type 'F' does not satisfy the constraint 'OutputFlags<any>'.
+
+100     }>(options?: Interfaces.Input<F, G>, argv?: string[]): Promise<Interfaces.ParserOutput<F, G, A>>;
+```
+
 oclif example Hello World CLI
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
